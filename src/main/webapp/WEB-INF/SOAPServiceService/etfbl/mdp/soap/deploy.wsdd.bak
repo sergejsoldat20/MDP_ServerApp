@@ -1,0 +1,34 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SOAPServiceService WSDL service -->
+
+  <service name="SOAPService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.mdp.etfbl"/>
+      <parameter name="wsdlServiceElement" value="SOAPServiceService"/>
+      <parameter name="schemaQualified" value="http://soap.mdp.etfbl"/>
+      <parameter name="wsdlServicePort" value="SOAPService"/>
+      <parameter name="className" value="etfbl.mdp.soap.SOAPServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="SOAPService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="logout" qname="operNS:logout" xmlns:operNS="http://soap.mdp.etfbl" returnQName="retNS:logoutReturn" xmlns:retNS="http://soap.mdp.etfbl" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://soap.mdp.etfbl" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://soap.mdp.etfbl" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="loginUser" qname="operNS:loginUser" xmlns:operNS="http://soap.mdp.etfbl" returnQName="retNS:loginUserReturn" xmlns:retNS="http://soap.mdp.etfbl" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://soap.mdp.etfbl" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://soap.mdp.etfbl" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="logout loginUser"/>
+
+  </service>
+</deployment>

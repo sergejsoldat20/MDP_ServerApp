@@ -1,0 +1,51 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SOAPServiceService WSDL service -->
+
+  <service name="SOAPService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.etfbl"/>
+      <parameter name="wsdlServiceElement" value="SOAPServiceService"/>
+      <parameter name="schemaQualified" value="http://soap.etfbl,http://model.mdp.etfbl"/>
+      <parameter name="wsdlServicePort" value="SOAPService"/>
+      <parameter name="className" value="etfbl.soap.SOAPServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="SOAPService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="loggedUsers" qname="operNS:loggedUsers" xmlns:operNS="http://soap.etfbl" returnQName="retNS:loggedUsersReturn" xmlns:retNS="http://soap.etfbl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="loginUser" qname="operNS:loginUser" xmlns:operNS="http://soap.etfbl" returnQName="retNS:loginUserReturn" xmlns:retNS="http://soap.etfbl" returnType="rtns:User" xmlns:rtns="http://model.mdp.etfbl" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://soap.etfbl" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://soap.etfbl" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="logout" qname="operNS:logout" xmlns:operNS="http://soap.etfbl" returnQName="retNS:logoutReturn" xmlns:retNS="http://soap.etfbl" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://soap.etfbl" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="loginUser logout loggedUsers"/>
+
+      <typeMapping
+        xmlns:ns="http://model.mdp.etfbl"
+        qname="ns:RailwayStation"
+        type="java:etfbl.mdp.model.RailwayStation"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model.mdp.etfbl"
+        qname="ns:User"
+        type="java:etfbl.mdp.model.User"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

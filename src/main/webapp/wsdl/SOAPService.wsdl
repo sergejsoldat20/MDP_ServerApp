@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://soap.etfbl" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://soap.etfbl" xmlns:intf="http://soap.etfbl" xmlns:tns1="http://model.mdp.etfbl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://soap.etfbl" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.mdp.etfbl"/>
+   <element name="loggedUsers">
+    <complexType/>
+   </element>
+   <element name="loggedUsersResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="loggedUsersReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginUser">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginUserResponse">
+    <complexType>
+     <sequence>
+      <element name="loginUserReturn" type="tns1:User"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="logout">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="logoutResponse">
+    <complexType>
+     <sequence>
+      <element name="logoutReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.mdp.etfbl" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="RailwayStation">
+    <sequence>
+     <element name="location" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="User">
+    <sequence>
+     <element name="isOnline" type="xsd:boolean"/>
+     <element name="online" type="xsd:boolean"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="railwayStation" nillable="true" type="tns1:RailwayStation"/>
+     <element name="username" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="logoutResponse">
+
+      <wsdl:part element="impl:logoutResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="logoutRequest">
+
+      <wsdl:part element="impl:logout" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginUserResponse">
+
+      <wsdl:part element="impl:loginUserResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loggedUsersRequest">
+
+      <wsdl:part element="impl:loggedUsers" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginUserRequest">
+
+      <wsdl:part element="impl:loginUser" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loggedUsersResponse">
+
+      <wsdl:part element="impl:loggedUsersResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SOAPService">
+
+      <wsdl:operation name="loggedUsers">
+
+         <wsdl:input message="impl:loggedUsersRequest" name="loggedUsersRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loggedUsersResponse" name="loggedUsersResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="loginUser">
+
+         <wsdl:input message="impl:loginUserRequest" name="loginUserRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginUserResponse" name="loginUserResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout">
+
+         <wsdl:input message="impl:logoutRequest" name="logoutRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:logoutResponse" name="logoutResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SOAPServiceSoapBinding" type="impl:SOAPService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="loggedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loggedUsersRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loggedUsersResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="loginUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginUserRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginUserResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="logoutRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="logoutResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SOAPServiceService">
+
+      <wsdl:port binding="impl:SOAPServiceSoapBinding" name="SOAPService">
+
+         <wsdlsoap:address location="http://localhost:8080/CentralApplication/services/SOAPService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

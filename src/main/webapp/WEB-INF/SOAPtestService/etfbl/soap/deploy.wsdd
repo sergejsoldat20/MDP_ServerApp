@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SOAPtestService WSDL service -->
+
+  <service name="SOAPtest" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.etfbl"/>
+      <parameter name="wsdlServiceElement" value="SOAPtestService"/>
+      <parameter name="schemaQualified" value="http://soap.etfbl"/>
+      <parameter name="wsdlServicePort" value="SOAPtest"/>
+      <parameter name="className" value="etfbl.soap.SOAPtest"/>
+      <parameter name="wsdlPortType" value="SOAPtest"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://soap.etfbl" xmlns:retNS="http://soap.etfbl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAllLines" qname="operNS:getAllLines" returnQName="retNS:getAllLinesReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://soap.etfbl" xmlns:retNS="http://soap.etfbl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="test" qname="operNS:test" returnQName="retNS:testReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="test getAllLines"/>
+
+  </service>
+</deployment>

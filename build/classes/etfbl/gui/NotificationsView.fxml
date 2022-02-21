@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etfbl.gui.NotificationsController">
+   <children>
+      <TextArea fx:id="contentTextArea" layoutX="31.0" layoutY="87.0" prefHeight="242.0" prefWidth="318.0" />
+      <Text layoutX="106.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sadrzaj obavjestenja " textAlignment="CENTER" wrappingWidth="166.9561767578125">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <TextField fx:id="senderTextField" layoutX="201.0" layoutY="347.0" />
+      <Text layoutX="155.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poslao" />
+   </children>
+</AnchorPane>
